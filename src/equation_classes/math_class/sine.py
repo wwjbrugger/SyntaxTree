@@ -1,4 +1,4 @@
-from src.equation_classes.math_class.abstract_operator import AbstractOperator
+from .abstract_operator import AbstractOperator
 import numpy as np
 
 

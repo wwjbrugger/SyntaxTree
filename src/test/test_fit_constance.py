@@ -1,5 +1,5 @@
 import unittest
-from src.syntax_tree.syntax_tree import SyntaxTree
+from ..syntax_tree.syntax_tree import SyntaxTree
 import pandas as pd
 import numpy as np
 

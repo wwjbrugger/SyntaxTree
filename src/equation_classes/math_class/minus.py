@@ -1,6 +1,6 @@
 import numpy as np
-from src.equation_classes.math_class.abstract_operator import AbstractOperator
-from src.equation_classes.math_class.plus import propagate_units_same
+from .abstract_operator import AbstractOperator
+from .plus import propagate_units_same
 
 
 class Minus(AbstractOperator):

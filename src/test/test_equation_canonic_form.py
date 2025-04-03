@@ -1,6 +1,6 @@
 import unittest
+from ..syntax_tree.syntax_tree import SyntaxTree
 
-from src.syntax_tree.syntax_tree import SyntaxTree
 
 
 class TestEvaluation(unittest.TestCase):

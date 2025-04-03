@@ -2,30 +2,30 @@ import traceback
 
 import tqdm
 
-from src.equation_classes.math_class.abs import Abs
-from src.equation_classes.math_class.plus import Plus
-from src.equation_classes.math_class.sqrt import Sqrt
-from src.equation_classes.math_class.tangent import Tangent
-from src.equation_classes.node import Node
-from src.equation_classes.math_class.terminal import Terminal
-from src.equation_classes.math_class.division import Division
-from src.equation_classes.math_class.minus import Minus
-from src.equation_classes.math_class.multiplication import Multiplication
-from src.equation_classes.math_class.sine import Sine
-from src.equation_classes.math_class.cosine import Cosine
-from src.equation_classes.math_class.y import Y
-from src.equation_classes.math_class.power import Power
-from src.equation_classes.math_class.logarithm import Logarithm
-from src.equation_classes.math_class.constants import Constants
-from src.equation_classes.math_class.logarithmus_naturalis import Logarithm_naturalis
+from ..equation_classes.math_class.abs import Abs
+from ..equation_classes.math_class.plus import Plus
+from ..equation_classes.math_class.sqrt import Sqrt
+from ..equation_classes.math_class.tangent import Tangent
+from ..equation_classes.node import Node
+from ..equation_classes.math_class.terminal import Terminal
+from ..equation_classes.math_class.division import Division
+from ..equation_classes.math_class.minus import Minus
+from ..equation_classes.math_class.multiplication import Multiplication
+from ..equation_classes.math_class.sine import Sine
+from ..equation_classes.math_class.cosine import Cosine
+from ..equation_classes.math_class.y import Y
+from ..equation_classes.math_class.power import Power
+from ..equation_classes.math_class.logarithm import Logarithm
+from ..equation_classes.math_class.constants import Constants
+from ..equation_classes.math_class.logarithmus_naturalis import Logarithm_naturalis
 import numpy as np
 import bisect
-from src.constant_fitting.helper_object_constant_fitting import HelperObjectConstantFitting
+from ..constant_fitting.helper_object_constant_fitting import HelperObjectConstantFitting
 from scipy.optimize import curve_fit
 import warnings
 from scipy.optimize import OptimizeWarning
-from src.equation_classes.math_class.exp import Exp
-from src.utils.error import NonFiniteError, NotInvertibleError
+from ..equation_classes.math_class.exp import Exp
+from ..utils.error import NonFiniteError, NotInvertibleError
 import copy
 
 

@@ -1,5 +1,5 @@
 import numpy as np
-from src.equation_classes.math_class.abstract_operator import AbstractOperator
+from .abstract_operator import AbstractOperator
 
 class Terminal(AbstractOperator):
     def __init__(self, node):

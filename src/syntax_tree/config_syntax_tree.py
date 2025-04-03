@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-from src.utils.argument_parser import str2bool
+
 import numpy as np
 class ConfigSyntaxTree:
     @staticmethod

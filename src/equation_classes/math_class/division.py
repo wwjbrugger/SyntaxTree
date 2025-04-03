@@ -1,8 +1,8 @@
 import copy
 
 import numpy as np
-from src.equation_classes.math_class.abstract_operator import AbstractOperator
-from src.equation_classes.math_class.multiplication import calculate_units
+from .abstract_operator import AbstractOperator
+from .multiplication import calculate_units
 
 
 class Division(AbstractOperator):

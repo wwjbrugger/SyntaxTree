@@ -1,7 +1,7 @@
 import copy
 import bisect
 import re
-from src.equation_classes.Dimension_Array import UnitArray
+from .Dimension_Array import UnitArray
 class Node():
     def __init__(self, tree, node_id, parent_node, depth):
         self.tree = tree

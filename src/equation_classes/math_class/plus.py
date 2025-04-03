@@ -1,7 +1,7 @@
 import copy
 
-from src.equation_classes.Dimension_Array import UnitError
-from src.equation_classes.math_class.abstract_operator import AbstractOperator
+from ..Dimension_Array import UnitError
+from .abstract_operator import AbstractOperator
 import numpy as np
 
 

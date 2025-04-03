@@ -1,7 +1,7 @@
-from src.equation_classes.math_class.abstract_operator import AbstractOperator
+from .abstract_operator import AbstractOperator
 import numpy as np
 
-from src.equation_classes.math_class.plus import use_more_concrete_units
+from .plus import use_more_concrete_units
 
 
 class Y(AbstractOperator):

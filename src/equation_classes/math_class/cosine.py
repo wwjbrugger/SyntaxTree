@@ -1,6 +1,6 @@
 import numpy as np
-from src.equation_classes.math_class.abstract_operator import AbstractOperator
-from src.equation_classes.math_class.sine import propagate_units_zeros
+from .abstract_operator import AbstractOperator
+from .sine import propagate_units_zeros
 
 
 class Cosine(AbstractOperator):

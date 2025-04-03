@@ -2,7 +2,7 @@ import unittest
 
 import pandas as pd
 
-from src.syntax_tree.syntax_tree import SyntaxTree
+from ..syntax_tree.syntax_tree import SyntaxTree
 import numpy as np
 
 
