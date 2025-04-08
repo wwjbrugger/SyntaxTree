@@ -24,7 +24,7 @@ class Constants(AbstractOperator):
                 call_node_id=self.node.node_id, kwargs=kwargs)
         elif len(list(kwargs.keys())):
             # constant dict is given
-            return f"{kwargs[self.node.node_symbol]['value']}"
+            return f"{kwargs[self.node.node_symbol]['value']:.2e}"
         else:
             return 'c'
 
@@ -32,7 +32,7 @@ class Constants(AbstractOperator):
         if call_node_id == self.node.node_id:
             return self.node.parent_node.math_class.infix_notation(call_node_id=self.node.node_id, kwargs=kwargs)
         elif len(list(kwargs.keys())):
-            return f"{kwargs[self.node.node_symbol]['value']:.4f}"
+            return f"{kwargs[self.node.node_symbol]['value']:.2e}"
         else:
             return f"{self.node.node_symbol}"
 
