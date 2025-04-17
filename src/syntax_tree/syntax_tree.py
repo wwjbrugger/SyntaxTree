@@ -390,10 +390,6 @@ class SyntaxTree():
         return possible_moves
 
     def evaluate_subtree(self, node_id, dataset):
-        self.fit_constants(call_node_id=node_id,
-                           dataset=dataset,
-                           mode='evaluate'
-                           )
         node_to_evaluate = self.dict_of_nodes[node_id]
         result = node_to_evaluate.math_class.evaluate_subtree(call_node_id=node_id,
                                                               dataset=dataset,
