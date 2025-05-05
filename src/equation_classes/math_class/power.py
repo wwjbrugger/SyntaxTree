@@ -95,7 +95,7 @@ def propagate_units_power(node, call_node_id, kwargs, dataset, changed=False):
     exponent = node.list_children[1].math_class.evaluate_subtree(
             call_node_id=node.node_id,
             dataset=dataset,
-            kwargs=kwargs)[0]
+            kwargs=node.tree.constants_in_tree)[0]
     if exponent == 0.:
         changed |= node.units.update([0. for i in range(node.tree.args.unit_dimension)])
     else:

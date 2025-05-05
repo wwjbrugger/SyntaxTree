@@ -50,6 +50,7 @@ class Constants(AbstractOperator):
                 dtype=np.float64
             )
         else:
+            # we have fit a constant per system
             system_id_column = self.node.tree.args.system_id_column
             replace_dict = dict(
                 [(key, kwargs[key][symbol]['value']) for key in kwargs.keys()
