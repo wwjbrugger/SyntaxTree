@@ -34,11 +34,11 @@ class Exp(AbstractOperator):
         elif call_node_id == self.node.parent_node.node_id or call_node_id is None:
             c_0_str = (self.node.list_children[0].math_class
                        .infix_notation(self.node.node_id, kwargs))
-            return f' exp {c_0_str}'
+            return f' exp ( {c_0_str} )'
         elif call_node_id == self.node.list_children[0].node_id:
             p_str = (self.node.parent_node.math_class
                      .infix_notation(self.node.node_id, kwargs))
-            return f' ln {p_str}'
+            return f' ln ( {p_str} )'
 
     def residual(self, call_node_id, dataset, kwargs):
         if call_node_id == self.node.list_children[0].node_id:

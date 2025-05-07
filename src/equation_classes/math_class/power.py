@@ -49,7 +49,7 @@ class Power(AbstractOperator):
             c_0_str = self.node.list_children[0].math_class.infix_notation(self.node.node_id, kwargs)
             c_1_str = self.node.list_children[1].math_class.infix_notation(self.node.node_id, kwargs)
             return f'  {c_0_str}  **' \
-                   f'  {c_1_str}  '
+                   f' ( {c_1_str} ) '
         elif call_node_id == self.node.list_children[1].node_id:
             p_str = self.node.parent_node.math_class.infix_notation(call_node_id=self.node.node_id, kwargs=kwargs)
             c_0_str = self.node.list_children[0].math_class.infix_notation(self.node.node_id, kwargs)

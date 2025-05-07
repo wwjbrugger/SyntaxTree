@@ -31,7 +31,7 @@ class Tangent(AbstractOperator):
                 call_node_id=self.node.node_id, kwargs=kwargs
             )
         elif call_node_id == self.node.parent_node.node_id or call_node_id is None:
-            return f""" tan ({
+            return f""" tan ( {
             self.node.list_children[0].math_class.infix_notation(
                 self.node.node_id, kwargs
             )} )"""

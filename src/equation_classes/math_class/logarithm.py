@@ -39,7 +39,7 @@ class Logarithm(AbstractOperator):
         elif call_node_id == self.node.list_children[0].node_id:
             p_str = (self.node.parent_node.math_class
                      .infix_notation(call_node_id=self.node.node_id, kwargs=kwargs))
-            return f' 10 **  {p_str}  '
+            return f' 10 ** ( {p_str} ) '
 
     def residual(self, call_node_id, dataset, kwargs):
         if call_node_id == self.node.node_id:
