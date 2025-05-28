@@ -1,3 +1,4 @@
+from src.equation_discovery.fit_constant import fit_constants
 from ..syntax_tree.syntax_tree import SyntaxTree
 import pandas as pd
 
@@ -5,11 +6,11 @@ import pandas as pd
 def refit_all_constants(finished_state, args):
     complete_syntax_tree, initial_dataset = reconstruct_complete_syntax_tree(finished_state=finished_state, args=args)
     if complete_syntax_tree.num_constants_in_complete_tree > 0:
-        complete_syntax_tree.constants_in_tree['num_fitted_constants']= 0
-        complete_syntax_tree.fit_constants(
-            call_node_id=0,
-            dataset=initial_dataset,
-            mode='evaluate')
+        complete_syntax_tree = fit_constants(
+            args,
+            prefix=complete_syntax_tree.rearrange_equation_prefix_notation(new_start_node_id=-1)[1],
+            df=initial_dataset
+        )
     return complete_syntax_tree, initial_dataset
 
 
