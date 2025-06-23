@@ -6,3 +6,5 @@ class NotInvertibleError(Exception):
 
 class NoSolutionFoundError(Exception):
     pass
+class MaxDepthError(Exception):
+    pass

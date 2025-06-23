@@ -25,7 +25,7 @@ from scipy.optimize import curve_fit
 import warnings
 from scipy.optimize import OptimizeWarning
 from ..equation_classes.math_class.exp import Exp
-from ..utils.error import NonFiniteError, NotInvertibleError
+from ..utils.error import NonFiniteError, NotInvertibleError, MaxDepthError
 import copy
 
 
@@ -199,7 +199,7 @@ class SyntaxTree():
         if len(prefix) > 0:
             raise SyntaxError(f'Not the complete prefix is translated to an syntax tree. The rest is : {prefix_rest}')
         if self.max_depth_reached:
-            raise  RuntimeError(f'Tree exceeds max depth of {self.max_depth} with  {self.current_depth}')
+            raise  MaxDepthError(f'Tree exceeds max depth of {self.max_depth} with  {self.current_depth}')
         if len(self.nodes_to_expand) == 0:
             self.complete = True
 
