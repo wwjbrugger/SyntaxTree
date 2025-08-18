@@ -75,7 +75,7 @@ class Node():
             child.delete()
 
     def expand_node_with_action(self, action=None):
-        # entscheide welche regel angewendet werden soll
+        # decides which rule to apply
         self.selected_action.append(action)
         self.selected_production.append(self.tree.grammar._productions[action])
         self.check_if_node_and_production_fit(self.selected_production[-1])
@@ -115,7 +115,7 @@ class Node():
 
 
     def sleuth(self, codes):
-        # Erzeugung SLEUTH-Notation des Baumes.
+        # Creates SLEUTH-Notation of the tree.
         math_class = self.math_class.__str__()
         math_class = replace_floats_by_c(math_class)
         rtr = f"{codes[math_class]}"

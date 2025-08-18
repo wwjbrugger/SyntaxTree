@@ -5,7 +5,7 @@ the array with index 1 shows the unit information from the child node.
 An element in the array can be a float or a string.
 The string is needed if the units of the adjacent node are not clear.
 In this context we can write s.t. like string =  n_[node_id} op n_[node_id}
-The method consistent checks if  array with index 0  and array with index 1 are equal if not flse is returned
+The method consistent checks if  array with index 0  and array with index 1 are equal if not false is returned
 """
 import numpy as np
 
