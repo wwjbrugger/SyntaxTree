@@ -10,7 +10,7 @@ class ConfigSyntaxTree:
                             default=2,
                             help='How many children a node will maximal have')
         parser.add_argument('--max_constants_in_tree', type=int,
-                            default=1,
+                            default=2,
                             help='Maximum number of constants allowed in  equation'
                                  'afterwards equation will be invalid')
         parser.add_argument('--max_depth_of_tree', type=int,
