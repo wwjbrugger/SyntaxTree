@@ -53,7 +53,7 @@ class Terminal(AbstractOperator):
             if self.node.node_symbol in self.node.tree.args.unit_dict:
                 self.node.units.units = self.node.tree.args.unit_dict[self.node.node_symbol]
             else:
-                self.node.units.units = [0 for i in range(self.node.tree.args.unit_dimension)]
+                self.node.units.units = [0.0 for i in range(self.node.tree.args.unit_dimension)]
 
     def propagate_units(self, call_node_id, kwargs, dataset, changed=False):
         if call_node_id == self.node.node_id or call_node_id is None:
