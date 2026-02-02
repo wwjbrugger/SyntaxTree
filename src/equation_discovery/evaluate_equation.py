@@ -20,8 +20,7 @@ def evaluate_equation(args, tree, X_df):
             y_true=X_df.loc[:, 'y'].to_numpy(),
             multioutput='uniform_average'
         ) *100
-        #err_r2 = r2_score( X_df.loc[:, 'y'], y_pred)
-        err_r2 = R2_y_true_mean_precomputed(args, X_df, y_pred)
+        err_r2 = r2_score( X_df.loc[:, 'y'], y_pred)
         output = {'error': err, 'error_mse': err_mse, 'err_rel': err_rel, 'err_percent': err_percent, 'err_r2': err_r2, 'infix': tree.rearrange_equation_infix_notation()[-1],
                   'prefix': tree.rearrange_equation_prefix_notation()[-1], 'num_operations': tree.num_inner_nodes(), 'num_constants': tree.num_constants_in_complete_tree,
                   'constants': tree.constants_in_tree}
