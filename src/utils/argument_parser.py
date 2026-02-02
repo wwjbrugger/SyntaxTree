@@ -8,3 +8,7 @@ def str2bool(v):
         return False
     else:
         raise argparse.ArgumentTypeError('Boolean value expected.')
+
+class Namespace:
+    def __init__(self):
+        pass

@@ -338,7 +338,7 @@ class SyntaxTree():
 
     def expand_node_with_action(self, node_id, action,
                                 build_syntax_tree_token_based=False):
-        if build_syntax_tree_token_based == True:
+        if build_syntax_tree_token_based:
             self.expand_node_with_token(action)
         else:
             node = self.dict_of_nodes[node_id]
