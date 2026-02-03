@@ -154,6 +154,8 @@ def replace_floats_by_c(string):
     float_pattern = r'\b\d*\.\d+(e[+-]?\d+)?\b'
     output_string = re.sub(float_pattern, 'c', string)
     return output_string
+
+
 def geometric_sum(max_branching_factor, n):
     # sum_k=0^n q^k
     nominator = 1 - max_branching_factor ** (n + 1)
