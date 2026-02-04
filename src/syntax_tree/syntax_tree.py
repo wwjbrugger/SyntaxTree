@@ -199,7 +199,8 @@ class SyntaxTree():
         if len(prefix) > 0:
             raise SyntaxError(f'Not the complete prefix is translated to an syntax tree. The rest is : {prefix_rest}')
         if self.max_depth_reached:
-            raise  MaxDepthError(f'Tree exceeds max depth of {self.max_depth} with  {self.current_depth}')
+            raise  MaxDepthError(f'Tree exceeds max depth of {self.max_depth} with  {self.current_depth}'
+                                 f'The tree is: {self.rearrange_equation_prefix_notation()[-1]}')
         if len(self.nodes_to_expand) == 0:
             self.complete = True
 
