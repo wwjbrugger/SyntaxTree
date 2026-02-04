@@ -7,30 +7,8 @@ from SyntaxTree.src.syntax_tree.syntax_tree import SyntaxTree
 def fit_constants(args, prefix, df):
     eq_tree = SyntaxTree(grammar=None, args=args)
     eq_tree.prefix_to_syntax_tree(prefix.split())
-    if args.constant_for_each_system:
-        fit_constant_per_system(args, df, eq_tree)
-    else:
-        eq_tree.fit_constants(call_node_id=-1, dataset=df, mode='evaluate')
+    eq_tree.fit_constants(call_node_id=-1, dataset=df, mode='evaluate')
     return eq_tree
-
-
-def fit_constant_per_system(args, df, eq_tree):
-    c_system_dict = {}
-    __id__ = __fit_constant_per_system__(
-        args,
-        c_system_dict,
-        df,
-        eq_tree
-    )
-    average_dict = get_average_constants(
-        c_system_dict,
-        eq_tree
-    )
-
-    c_system_dict[f'num_fitted_constants'] = \
-        c_system_dict[gfk(c_system_dict)][f'num_fitted_constants']
-    c_system_dict['average'] = average_dict
-    eq_tree.constants_in_tree = c_system_dict
 
 
 def __fit_constant_per_system__(args, c_system_dict, df, eq_tree):

@@ -7,6 +7,14 @@ from SyntaxTree.src.syntax_tree.syntax_tree import SyntaxTree
 import traceback
 
 from SyntaxTree.src.equation_discovery.rewards import ReRMSE,  R2_y_true_mean_precomputed
+from src.equation_discovery.fit_constant import fit_constants
+
+
+def fit_and_evaluate(args, equation, filtered_dfs_train):
+    tree = fit_constants(args, equation, filtered_dfs_train)
+    output = evaluate_equation(args, tree, filtered_dfs_train)
+    return tree, output
+
 
 
 def evaluate_equation(args, tree, X_df):
