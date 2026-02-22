@@ -6,7 +6,7 @@ from SyntaxTree.src.equation_classes.infix_to_prefix import InfixToPrefix
 from SyntaxTree.src.syntax_tree.syntax_tree import SyntaxTree
 import traceback
 
-from SyntaxTree.src.equation_discovery.rewards import ReRMSE,  R2_y_true_mean_precomputed
+from SyntaxTree.src.equation_discovery.rewards import ReRMSE, R2_y_true_mean_precomputed, NMAE
 from src.equation_discovery.fit_constant import fit_constants
 
 
@@ -14,7 +14,6 @@ def fit_and_evaluate(args, equation, filtered_dfs_train):
     tree = fit_constants(args, equation, filtered_dfs_train)
     output = evaluate_equation(args, tree, filtered_dfs_train)
     return tree, output
-
 
 
 def evaluate_equation(args, tree, X_df):
@@ -27,11 +26,22 @@ def evaluate_equation(args, tree, X_df):
             y_pred=y_pred,
             y_true=X_df.loc[:, 'y'].to_numpy(),
             multioutput='uniform_average'
-        ) *100
-        err_r2 = r2_score( X_df.loc[:, 'y'], y_pred)
-        output = {'error': err, 'error_mse': err_mse, 'err_rel': err_rel, 'err_percent': err_percent, 'err_r2': err_r2, 'infix': tree.rearrange_equation_infix_notation()[-1],
-                  'prefix': tree.rearrange_equation_prefix_notation()[-1], 'num_operations': tree.num_inner_nodes(), 'num_constants': tree.num_constants_in_complete_tree,
-                  'constants': tree.constants_in_tree}
+        ) * 100
+        nmae = NMAE(y_pred, X_df.loc[:, 'y'])
+        err_r2 = r2_score(X_df.loc[:, 'y'], y_pred)
+        output = {'error': err,
+                  'error_mse': err_mse,
+                  'err_rel': err_rel,
+                  'err_percent': err_percent,
+                  'err_r2': err_r2,
+                  'nmae': nmae,
+
+                  'infix': tree.rearrange_equation_infix_notation()[-1],
+                  'prefix': tree.rearrange_equation_prefix_notation()[-1],
+                  'num_operations': tree.num_inner_nodes(),
+                  'num_constants': tree.num_constants_in_complete_tree,
+                  'constants': tree.constants_in_tree
+                  }
         if 'intercept' in X_df.columns:
             output['intercept'] = X_df.groupby(args.system_id_column)['intercept'].first().to_dict()
         return output
@@ -40,6 +50,7 @@ def evaluate_equation(args, tree, X_df):
         print(tree.rearrange_equation_prefix_notation(-1))
         print(traceback.format_exc())
         return {}
+
 
 def test_equation(args, tree, df):
     try:
@@ -51,10 +62,10 @@ def test_equation(args, tree, df):
             return {'fail_code': "Not all constant are fitted"}
     except (SyntaxError, RuntimeError) as E:
         print(traceback.format_exc())
-        return  {'fail_code': f"{E}"}
+        return {'fail_code': f"{E}"}
 
 
-def map_equation_to_syntax_tree(args, equation, infix=True, catch_exceptions=False ):
+def map_equation_to_syntax_tree(args, equation, infix=True, catch_exceptions=False):
     tree = SyntaxTree(grammar=None, args=args)
     if catch_exceptions:
         try:
@@ -124,10 +135,10 @@ def replace_minus_with_two_operator(equation):
     two_operator_equation = []
     for i, token in enumerate(equation_array):
         if token.startswith('-') and len(token) > 1:
-            two_operator_equation.extend([' ( ', ' 0 ', ' - ', ' 1 ', ' ) ', ' * '  , token[1:] ])
-        elif token == '-' and i ==0:  # -()
+            two_operator_equation.extend([' ( ', ' 0 ', ' - ', ' 1 ', ' ) ', ' * ', token[1:]])
+        elif token == '-' and i == 0:  # -()
             two_operator_equation.extend([' ( ', ' 0 ', ' - ', ' 1 ', ' ) * '])
-        elif token == '-' and equation_array[i-1] == '(': # (-
+        elif token == '-' and equation_array[i - 1] == '(':  # (-
             two_operator_equation.extend([' ( ', ' 0 ', ' - ', ' 1 ', ' ) * '])
         else:
             two_operator_equation.append(token)

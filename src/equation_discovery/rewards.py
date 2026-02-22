@@ -27,6 +27,14 @@ def Mse(y_pred, y_true):
     mse = np.mean(square_error)
     return float(mse)
 
+def NMAE(y_pred, y_true):
+    # normalized mean absolute error
+    # normalize the error
+    mean_true = np.mean(y_true)
+    mae_mean = np.mean(np.abs(y_true - mean_true))
+    mae_model = np.mean(np.abs(y_pred - y_true))
+    nMAE = mae_model / mae_mean
+    return nMAE
 
 def Me(y_pred, y_true):
     # Mean error
