@@ -12,11 +12,12 @@ class HelperObjectConstantFitting():
                        syntax_tree.num_constants_in_complete_tree):
             parameter_index = i - syntax_tree.constants_in_tree['num_fitted_constants']
             syntax_tree.constants_in_tree[f"c_{i}"]['value']= params[parameter_index]
-        temp = self.node_to_evaluate.math_class.evaluate_subtree(
-            call_node_id=self.node_id,
-            dataset=xdata,
-            kwargs=syntax_tree.constants_in_tree
-        )
+        with np.errstate(all='raise'):
+            temp = self.node_to_evaluate.math_class.evaluate_subtree(
+                call_node_id=self.node_id,
+                dataset=xdata,
+                kwargs=syntax_tree.constants_in_tree
+            )
         if np.all(np.isfinite(temp)):
             return temp
         else:
@@ -29,11 +30,12 @@ class HelperObjectConstantFitting():
             parameter_index = i - syntax_tree.constants_in_tree['num_fitted_constants']
             syntax_tree.constants_in_tree[f"c_{i}"]['value']= params[parameter_index]
 
-        temp = self.node_to_evaluate.math_class.residual(
-            call_node_id=self.node_id,
-            dataset=xdata,
-            kwargs=syntax_tree.constants_in_tree
-        )
+        with np.errstate(all='raise'):
+            temp = self.node_to_evaluate.math_class.residual(
+                call_node_id=self.node_id,
+                dataset=xdata,
+                kwargs=syntax_tree.constants_in_tree
+            )
         if np.all(np.isfinite(temp)):
             return temp
         else:

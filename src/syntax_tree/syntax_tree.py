@@ -35,7 +35,6 @@ class SyntaxTree():
     """
 
     def __init__(self, grammar, args):
-        np.seterr(all='raise')
         self.operator_to_class = {
             '+': Plus,
             'terminal': Terminal,
@@ -391,10 +390,11 @@ class SyntaxTree():
 
     def evaluate_subtree(self, node_id, dataset):
         node_to_evaluate = self.dict_of_nodes[node_id]
-        result = node_to_evaluate.math_class.evaluate_subtree(call_node_id=node_id,
-                                                              dataset=dataset,
-                                                              kwargs=self.constants_in_tree
-                                                              )
+        with np.errstate(all='raise'):
+            result = node_to_evaluate.math_class.evaluate_subtree(call_node_id=node_id,
+                                                                  dataset=dataset,
+                                                                  kwargs=self.constants_in_tree
+                                                                  )
         result_64 = np.float64(result)
         if np.all(np.isfinite(result_64)):
             return result_64
@@ -408,11 +408,12 @@ class SyntaxTree():
                                dataset=dataset,
                                mode='residual'
                                )
-            residual = node_to_evaluate.math_class.residual(
-                call_node_id=node_id,
-                dataset=dataset,
-                kwargs=self.constants_in_tree
-            )
+            with np.errstate(all='raise'):
+                residual = node_to_evaluate.math_class.residual(
+                    call_node_id=node_id,
+                    dataset=dataset,
+                    kwargs=self.constants_in_tree
+                )
             if np.all(np.isfinite(residual)):
                 return residual
             else:
